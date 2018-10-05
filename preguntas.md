@@ -47,3 +47,13 @@
 
 ## 9. ¿Que pasa si creo una imagen sin especificar una versión o tag, con qué versión se crea	?
 
+
+## ¿Porqué es necesario crear un contenedor con esta bandera -it ? ¿Qué pasa si no le pongo -it?
+
+
+## ¿Para qué sirve ejecutar el comando bash al eejcutar una imagen?
+
+## ¿Cuál es la diferencia entre docker ps y docker ps -a?
+	docker ps : Lista todos los contenedores activos
+	docker ps -a: Show all containers (default shows just running)
+
