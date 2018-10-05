@@ -57,3 +57,51 @@
 	docker ps : Lista todos los contenedores activos
 	docker ps -a: Show all containers (default shows just running)
 
+
+	
+# PREGUNRAS PARTE 5
+
+## 1. ¿Cuál es la diferencia entre una imagen y un contenedor?
+	### Contenedores Docker :
+	Son como un directorio, contienen todo lo necesario para que una aplicación pueda funcionar sin necesidad de acceder a un repositorio externo al contenedor. 
+	Cada uno de éstos es una plataforma de aplicaciones segura y aislada del resto que podamos encontrar o desplegar en la misma máquina host.
+
+	### Imágenes Docker :
+		La imagen Docker podríamos entenderla como un SO con aplicaciones instaladas (Por ejemplo un OpenSUSE con un paquete ofimático). 
+		Sobre esta base podremos empezar a añadir aplicaciones que vayamos a necesitar en otro equipo donde tengamos intención de usar la imagen. 
+		Además Docker nos ofrece una forma muy sencilla de actualizar las imágenes que tengamos creadas, así como un sencillo método para crear nuevas imágenes. 
+
+## 2. ¿Cómo listo las imágenes que hay en mi computadora?
+	haciendo uso del comando >docker images
+	
+## 3. ¿Cómo salgo de un contenedor de docker?
+	docker attach <container_id>
+## 4. ¿Se elimina el contenedor al salir de ella?
+	No
+	docker --rm does not delete container after exit
+## 5. ¿Cómo elimino un contenedor?
+		docker rm /redis
+## 6. ¿Para qué es necesario el flag `-i`, `-t`, `--rm`?
+		'-i' activa el modo intercativo
+		'-t' Activa la consola TTY del contenedor
+		docker run --rm my-docker
+## 7. ¿Cómo verifico que el archivo creado se encuentra en la imagen?
+	docker run -it image_name sh
+## 8. ¿Cómo se comenta una linea de código en Dockerfile?
+	# Everything on this line is a comment
+
+# PREGUNTAS PARTE 6
+
+## 1. ¿Qué es NGINX?
+	NGINX, pronunciado como “engine-ex”, es un servidor web de código abierto que, desde su éxito inicial como servidor web, 
+	ahora también es usado como proxy inverso, cache de HTTP, y balanceador de carga.
+
+## 2. ¿Cómo expongo puertos en docker?
+	docker run -dti --name "nombre-contenedor" -p 8080:8080 "nombre-imagen"
+	Si todo ha ido bien, en el navegador deberíamos ver una imagen similar a esta por el puerto 8080:
+	docker run -d -p "8080:80" nginx
+## 3. ¿Cómo especifico los puertos al levantar un contenedor (docker run)?
+	docker run -d -p "8080:80" nginx
+## 4. ¿Cómo hago 'forward' al levantar un contenedor (docker run)?
+		sudo docker run -d --restart=unless-stopped -p 8080:8080 rancher/server
+		
