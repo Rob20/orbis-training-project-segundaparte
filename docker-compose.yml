@@ -1,0 +1,7 @@
+version: '2'
+services:
+    nginx:
+        container_name: nginx_app
+        image: "robespierre/orbis-training-docker-segundaparte:2.0.1"
+        ports:
+            - "1080:80"
