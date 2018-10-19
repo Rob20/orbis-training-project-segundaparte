@@ -23,3 +23,10 @@ docker run -it -w /app -v "F:\docker\orbis-training-project-segundaparte":/app r
 #Installar NPM
 docker run -w /app -it -v "F:\docker\orbis-training-project-segundaparte":/app robespierre/orbis-training-docker-segundaparte:3.1.0 npm install
 
+docker run -p "35729:3030" -w /app -v  "F:\docker\orbis-training-project-segundaparte/robespierre/orbis-training-docker-segundaparte:3.1.0 npm start
+
+docker run -p "35729:3030" -w /app -v  "C:\Jean Carlos Lizano Arroyo\Capacitacion\orbis-example-traizano"/orbis-training-docker:2.0.0 npm start
+
+docker run -p "1042:3030" -w /app -v  "F:\docker\orbis-training-project-segundaparte":/app  robespierre/orbis-training-docker-segundaparte:3.1.0 npm start
+
+docker run -p "3030:3030" -p "35729:3030" -w /app -v "F:\docker\orbis-training-project-segundaparte":/app robespierre/orbis-training-docker-segundaparte:3.1.0 npm start
