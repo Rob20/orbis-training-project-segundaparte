@@ -30,3 +30,4 @@ docker run -p "35729:3030" -w /app -v  "C:\Jean Carlos Lizano Arroyo\Capacitacio
 docker run -p "1042:3030" -w /app -v  "F:\docker\orbis-training-project-segundaparte":/app  robespierre/orbis-training-docker-segundaparte:3.1.0 npm start
 
 docker run -p "3030:3030" -p "35729:3030" -w /app -v "F:\docker\orbis-training-project-segundaparte":/app robespierre/orbis-training-docker-segundaparte:3.1.0 npm start
+
