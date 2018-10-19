@@ -61,3 +61,5 @@ services:
        command: "npm start"
 #ejecutar docker compose
 docker-compose up
+
+
