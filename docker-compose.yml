@@ -6,11 +6,18 @@
 #        command: npm run start
 #        ports:
 #            - "8080:80"
+
 version: "3"
 services:
    web:
+       container_name: orbis-training-docker-segundaparte
        working_dir: /app
        ports:
            - "1042:1042"
+           - "35729:35729"
        image: "robespierre/orbis-training-docker-segundaparte:3.1.0"
        command: "npm start"
+   test:
+       container_name: node-slim
+       image: "robespierre/orbis-training-docker-segundaparte:3.1.0"
+       command: "curl http://localhost:1042/"

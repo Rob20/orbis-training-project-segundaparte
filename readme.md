@@ -62,4 +62,102 @@ services:
 #ejecutar docker compose
 docker-compose up
 
+#Parte 8
+#1. Crear un contenedor que ejecute el comando curl a la url expuesta del proyecto realizado en el paso 8.
+docker-compose up -d
+docker run --net=host node:10.10.0-slim curl http://localhost:1042/
 
+
+docker exec -i -t robespierre/orbis-training-docker-segundaparte:3.1.0 /bin/bash
+docker exec -ti robespierre/orbis-training-docker-segundaparte:3.1.0 sh -c "echo a && echo b"
+
+#2. Crear otro servicio llamado test en el archivo docker-compose que realice lo mismo que el paso anterior
+
+ version: "3"
+ services:
+   web:
+       container_name: orbis-training-docker-segundaparte
+       working_dir: /app
+       ports:
+           - "1042:1042"
+           - "35729:35729"
+       image: "robespierre/orbis-training-docker-segundaparte:3.1.0"
+       command: "npm start"
+   test:
+       container_name: node-slim
+       image: "robespierre/orbis-training-docker-segundaparte:3.1.0"
+       command: "curl http://localhost:1042/"
+#       depends_on:
+#           - web
+
+#Luego ejecutar el comando
+	docker-compose up #desde el terminal Linux
+
+#3. Crear un archivo llamado example.sh dentro de la carpeta resources
+
+contenido de ejemplo.sh
+#!/bin/bash
+function saludo {
+   echo "Hola docker"
+ }
+saludo
+
+docker run -it -w /app/ -v "F:\docker\orbis-training-project-segundaparte":/app robespierre/orbis-training-docker-segundaparte:3.1.0 bash resources/saludo.sh
+
+#4. Pasar una variable llamada NOMBRE, por el comando docker run y modificar el saludo a mostrar
+#contenido de Saludo.sh
+function saludo {
+ echo "Hola Pendex!!!, tu nombre es ${NAME}"
+}
+saludo
+
+docker run -it -w /app/ -v "F:\docker\orbis-training-project-segundaparte":/app -e NAME='Robespierre' robespierre/orbis-training-docker-segundaparte:3.1.0 bash resources/saludo.sh
+
+#5. Mostrar en la consola el mensaje Ejecutando contenedor..., cada vez que uno cree un contenedor de la imagen de Docker.
+#contenido de saludo.sh
+function initialize_container {
+ echo "Ejecutando contenedor...ejecutando..............>>>>>>>>>>>>>>>>>>"
+}
+# Item 5 : Mostrar en la consola el mensaje Ejecutando contenedor..., cada vez que uno cree un contenedor de la imagen de Docker.
+
+docker run -w /app -v "D:\Capacitacion Docker\orbis-training-project\resources":/app --entrypoint ./ejec.sh josemsq/orbis-training-docker:2.3.0
+
+initialize_container
+
+docker run -it -w /app/ -v "F:\docker\orbis-training-project-segundaparte":/app robespierre/orbis-training-docker-segundaparte:3.1.0 bash resources/saludo.sh
+
+#Parte 9
+#1. Crear un archivo de nombre Makefile que contenga los targets: install, start, release y greet. De tal manera que cuando se ejecute en consola el comando make con el target indicado realice las siguientes acciones:
+
+Makefile----->COntenido
+
+install:
+      docker run -w /app -it -v "F:\docker\orbis-training-project-segundaparte":/app robespierre/orbis-training-docker-segundaparte:3.1.0 npm install
+start:
+      docker run -p "1024:1024" -p "35729:1024" -w /app -v "F:\docker\orbis-training-project-segundaparte":/app  robespierre/orbis-training-docker-segundaparte:3.1.0 npm start
+release:
+      docker run -p "1024:1024" -p "35729:1024" -w /app -v "F:\docker\orbis-training-project-segundaparte":/app  robespierre/orbis-training-docker-segundaparte:3.1.0 npm run release
+greet:
+      docker run -w /app -v "F:\docker\orbis-training-project-segundaparte\resources":/app robespierre/orbis-training-docker-segundaparte:3.1.0 ./saludo.sh
+            
+ftf:
+
+#Ejecutar 
+make install
+make start
+make release
+make greet
+
+#2. Crear un nuevo target en el archivo Makefile, que tendrá el mismo nombre de la carpeta que contiene el archivo README.md
+
+Este paso solo debe correr el comando: @echo 'Hola recursos!'
+#contenido de Mkefile
+robot: 
+    @echo 'Hola pendex!'
+#ejecutar desde terminal
+make robot
+
+#¿Qué sucede si le quito el @?
+
+echo 'Hola pendex!'
+Hola pendex!
