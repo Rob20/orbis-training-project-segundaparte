@@ -33,3 +33,9 @@ greet:
 robot: 
 		@echo 'Hola pendex!'
 		
+# 2. Los directorios deploy y build no debe ser agregadas al repositorio
+	---agregar estas lineas en el archivo (gitignore)
+	build/
+	deploy/
+	
+	
